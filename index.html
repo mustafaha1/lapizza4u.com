@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Pizza</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body 
+    <!-- Login Modal -->
+    <div class="login-modal" id="login-modal">
+        <div class="login-content">
+            <div class="login-header">
+                <h2>Admin Login</h2>
+                <button class="close-login" id="close-login">&times;</button>
+            </div>
+            <div class="login-body">
+                <div class="login-tabs">
+                    <div class="login-tab active" data-tab="login">Login</div>
+                    <div class="login-tab" data-tab="register">Register</div>
+                </div>
+                
+                <form class="login-form active" id="login-form">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn login-btn">Login</button>
+                    <div class="login-error" id="login-error"></div>
+                </form>
+                
+                <form class="login-form" id="register-form">
+                    <div class="form-group">
+                        <label for="register-username">Username</label>
+                        <input type="text" id="register-username" required minlength="3">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm">Confirm Password</label>
+                        <input type="password" id="register-confirm" required>
+                    </div>
+                    <button type="submit" class="btn login-btn">Register</button>
+                    <div class="login-error" id="register-error"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Welcome To La Pizza</div>
+                <div class="store-status" id="store-status">
+                    <span class="status-open">🟢 OPEN</span>
+                    <span class="status-closed" style="display: none;">🔴 CLOSED</span>
+                </div>
+                <nav background-image: url(usflag.png);>
+                    <ul>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#deals">Deals</a></li>
+                        <li><a href="#drinks">Drinks</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#admin" id="admin-link" style="display: none;">Admin</a></li>
+                        <li><a href="#" id="logout-link" style="display: none;">Logout</a></li>
+                        <li><a href="#" id="login-link">Admin Login</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cart-icon">
+                    🛒 <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Delicious Pizza & Burgers</h1>
+            <p>Fresh ingredients, amazing flavours, and fast delivery. Order your favourite meal now!</p>
+            <a href="#menu" class="btn">View Menu</a>
+        </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            
+            <!-- Search functionality -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="menu-search" placeholder="Search for items...">
+            </div>
+            
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="pizza">Pizza</div>
+                <div class="category-tab" data-category="burgers">Burgers</div>
+                <div class="category-tab" data-category="kebabs">Kebabs</div>
+                <div class="category-tab" data-category="calzone">Calzone Pizza</div>
+                <div class="category-tab" data-category="combobox">Combo Box</div>
+                <div class="category-tab" data-category="sides">Side Orders</div>
+                <div class="category-tab" data-category="appetizers">Appetizers</div>
+                <div class="category-tab" data-category="drinks">Drinks</div>
+                <div class="category-tab" data-category="deals">Meal Deals</div>
+                <div class="category-tab" data-category="garlicbread">Garlic Bread</div>
+            </div>
+            
+            <div class="menu-items" id="menu-items">
+                <!-- Menu items will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Contact & Order</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p><strong>Address:</strong> <span id="dynamic-address">123 Food Street, London, UK, W1 1AB</span></p>
+                    <p><strong>Phone:</strong> <span id="dynamic-phone">020 7123 4567</span></p>
+                    <p><strong>Email:</strong> <span id="dynamic-email">info@pizzaburgerhouse.co.uk</span></p>
+                    <p><strong>Opening Hours:</strong></p>
+                    <div id="dynamic-opening-hours">
+                        <!-- Opening hours will be loaded here by JavaScript -->
+                    </div>
+                </div>
+                <div class="order-type-section">
+                    <h3>Order Type</h3>
+                    <div class="order-type-selector">
+                        <label class="order-type-option">
+                            <input type="radio" name="orderType" value="collection" checked>
+                            <span>Collection</span>
+                        </label>
+                        <label class="order-type-option">
+                            <input type="radio" name="orderType" value="delivery">
+                            <span>Delivery</span>
+                        </label>
+                    </div>
+                    
+                    <div class="delivery-info" id="delivery-info" style="display: none;">
+                        <h4>Delivery Information</h4>
+                        <p>We deliver within <span id="delivery-radius">3</span> miles</p>
+                        <p>Delivery charge: <span id="delivery-charge-info">£2.50 for orders over 2.5 miles</span></p>
+                        <div class="postcode-check">
+                            <input type="text" id="postcode-input" placeholder="Enter your postcode">
+                            <button id="check-postcode" class="btn">Find Address</button>
+                            <div id="postcode-result" class="postcode-result"></div>
+                            
+                            <div class="address-selection" id="address-selection" style="display: none;">
+                                <h5>Select your address:</h5>
+                                <select id="address-dropdown" class="address-dropdown">
+                                    <option value="">Select an address</option>
+                                </select>
+                                <div class="manual-address-link">
+                                    <a href="#" id="manual-address-link">Can't find your address? Enter manually</a>
+                                </div>
+                            </div>
+                            
+                            <div class="manual-address-form" id="manual-address-form" style="display: none;">
+                                <h5>Enter your address manually:</h5>
+                                <div class="form-group">
+                                    <input type="text" id="manual-address-line1" placeholder="Address Line 1" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="manual-address-line2" placeholder="Address Line 2">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="manual-address-city" placeholder="City/Town" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="manual-address-postcode" placeholder="Postcode" required>
+                                </div>
+                                <button type="button" id="save-manual-address" class="btn">Use This Address</button>
+                                <button type="button" id="back-to-lookup" class="btn btn-secondary">Back to Postcode Lookup</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="collection-info" id="collection-info">
+                        <h4>Collection Information</h4>
+                        <p>Order online and collect from our store</p>
+                        <p>Average waiting time: 20-30 minutes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="admin-section" id="admin">
+        <div class="container">
+            <h2 class="section-title">Admin Panel</h2>
+            <div class="admin-panel">
+                <!-- Store Settings Section -->
+                <div class="admin-settings-section">
+                    <h3>Store Settings</h3>
+                    
+                    <div class="settings-group">
+                        <h4>Contact Details</h4>
+                        <div class="admin-form">
+                            <input type="text" id="store-address" placeholder="Store Address" value="123 Food Street, London, UK, W1 1AB">
+                            <input type="tel" id="store-phone" placeholder="Phone Number" value="020 7123 4567">
+                            <input type="email" id="store-email" placeholder="Email" value="info@pizzaburgerhouse.co.uk">
+                            <button type="button" class="btn" id="save-contact-details">Save Contact Details</button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>Delivery Settings</h4>
+                        <div class="admin-form">
+                            <div class="form-row">
+                                <label>Delivery Radius (miles):</label>
+                                <input type="number" id="delivery-radius-setting" value="3" min="1" max="10" step="0.5">
+                            </div>
+                            <div class="form-row">
+                                <label>Delivery Charge Threshold (miles):</label>
+                                <input type="number" id="delivery-threshold" value="2.5" min="1" max="10" step="0.5">
+                            </div>
+                            <div class="form-row">
+                                <label>Delivery Charge Amount (£):</label>
+                                <input type="number" id="delivery-charge" value="2.5" min="0" max="10" step="0.5">
+                            </div>
+                            <button type="button" class="btn" id="save-delivery-settings">Save Delivery Settings</button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h4>Opening Hours</h4>
+                        <div class="opening-hours-admin" id="opening-hours-admin">
+                            <!-- Opening hours form will be generated here -->
+                        </div>
+                        <button type="button" class="btn" id="save-opening-hours">Save Opening Hours</button>
+                    </div>
+                </div>
+
+                <!-- Existing Menu Management Section -->
+                <h3>Manage Menu Items</h3>
+                <form class="admin-form" id="admin-form">
+                    <input type="text" id="item-name" placeholder="Item Name" required>
+                    <input type="number" id="item-price" placeholder="Base Price" step="0.01" min="0" required>
+                    <select id="item-category" required>
+                        <option value="">Select Category</option>
+                        <option value="pizza">Pizza</option>
+                        <option value="burgers">Burgers</option>
+                        <option value="kebabs">Kebabs</option>
+                        <option value="calzone">Calzone Pizza</option>
+                        <option value="combobox">Combo Box</option>
+                        <option value="sides">Side Orders</option>
+                        <option value="appetizers">Appetizers</option>
+                        <option value="drinks">Drinks</option>
+                        <option value="deals">Meal Deals</option>
+                        <option value="garlicbread">Garlic Bread</option>
+                    </select>
+                    <input type="text" id="item-image" placeholder="Image URL">
+                    <textarea id="item-description" placeholder="Description" required></textarea>
+                    <div class="admin-buttons">
+                        <button type="submit" class="btn" id="add-item">Add Item</button>
+                        <button type="button" class="btn btn-secondary" id="update-item" style="display: none;">Update Item</button>
+                        <button type="button" class="btn btn-delete" id="cancel-edit" style="display: none;">Cancel</button>
+                    </div>
+                </form>
+                
+                <h3>Current Menu Items</h3>
+                <div class="admin-items" id="admin-items">
+                    <!-- Admin items will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Pizza & Burger House. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2 class="cart-title">Your Order</h2>
+                <button class="close-cart" id="close-cart">&times;</button>
+            </div>
+            
+            <div class="order-type-cart">
+                <h4>Order Type</h4>
+                <div class="order-type-selector">
+                    <label class="order-type-option">
+                        <input type="radio" name="cartOrderType" value="collection" checked>
+                        <span>Collection</span>
+                    </label>
+                    <label class="order-type-option">
+                        <input type="radio" name="cartOrderType" value="delivery">
+                        <span>Delivery</span>
+                    </label>
+                </div>
+                
+                <div class="delivery-details-cart" id="delivery-details-cart" style="display: none;">
+                    <h5>Delivery Address</h5>
+                    <div id="cart-delivery-address">
+                        <!-- Selected address will be displayed here -->
+                    </div>
+                    <p class="delivery-charge-note">Delivery charge may apply for distances over <span id="cart-delivery-threshold">2.5</span> miles</p>
+                </div>
+            </div>
+            
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be added here -->
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row subtotal">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">£0.00</span>
+                </div>
+                <div class="summary-row delivery-charge-row" style="display: none;">
+                    <span>Delivery Charge:</span>
+                    <span id="cart-delivery-charge">£0.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="cart-total">£0.00</span>
+                </div>
+                <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
